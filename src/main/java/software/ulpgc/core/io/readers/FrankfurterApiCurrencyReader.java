@@ -1,4 +1,4 @@
-package software.ulpgc.core.io;
+package software.ulpgc.core.io.readers;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -6,12 +6,12 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 
 public class ExRateApiCurrencyReader implements CurrencyReader {
-    private static final String url = "https://api.exchangeratesapi.io/v1/symbols?access_key=";
+    private static final String url = "https://frankfurter.dev/";
     private final String apiEndpointUrl;
 
 
     public ExRateApiCurrencyReader(String apiKey) {
-        this.apiEndpointUrl = ExRateApiCurrencyReader.url + apiKey;
+        this.apiEndpointUrl = ExRateApiCurrencyReader.url;
     }
 
     @Override
