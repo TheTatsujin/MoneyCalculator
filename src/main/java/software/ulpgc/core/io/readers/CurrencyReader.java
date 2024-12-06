@@ -1,5 +1,5 @@
-package software.ulpgc.core.io;
+package software.ulpgc.core.io.readers;
 
 public interface CurrencyReader {
-    public String read();
+    String read();
 }

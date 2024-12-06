@@ -1,4 +1,4 @@
-package software.ulpgc.core.io;
+package software.ulpgc.core.io.adapters;
 
 import software.ulpgc.core.model.Currency;
 

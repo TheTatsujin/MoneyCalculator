@@ -1,16 +1,16 @@
 package software.ulpgc.core.io.adapters;
 
-import software.ulpgc.core.io.pojos.CurrencyGetResponse;
 import software.ulpgc.core.model.Currency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ExRateApiCurrencyAdapter implements CurrencyAdapter {
+
+public class FrankfurterApiCurrencyAdapter implements CurrencyAdapter {
     @Override
     public List<Currency> adapt(Object currencyResponse) {
-        return adaptCurrencies(((CurrencyGetResponse) currencyResponse).symbols());
+        return adaptCurrencies((Map<String, String>) currencyResponse);
     }
 
     private List<Currency> adaptCurrencies(Map<String, String> responseTable) {

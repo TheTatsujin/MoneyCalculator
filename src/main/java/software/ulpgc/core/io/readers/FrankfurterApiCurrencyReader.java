@@ -5,13 +5,10 @@ import org.jsoup.Jsoup;
 
 import java.io.IOException;
 
-public class ExRateApiCurrencyReader implements CurrencyReader {
-    private static final String url = "https://frankfurter.dev/";
-    private final String apiEndpointUrl;
+public class FrankfurterApiCurrencyReader implements CurrencyReader {
+    private static final String currencyEndpointURL = "https://api.frankfurter.dev/v1/currencies";
 
-
-    public ExRateApiCurrencyReader(String apiKey) {
-        this.apiEndpointUrl = ExRateApiCurrencyReader.url;
+    public FrankfurterApiCurrencyReader() {
     }
 
     @Override
@@ -22,10 +19,11 @@ public class ExRateApiCurrencyReader implements CurrencyReader {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private String readApi() throws IOException {
-        Connection.Response response = Jsoup.connect(apiEndpointUrl)
+        Connection.Response response = Jsoup.connect(currencyEndpointURL)
                 .ignoreContentType(true)
                 .header("accept", "text/*")
                 .method(Connection.Method.GET)

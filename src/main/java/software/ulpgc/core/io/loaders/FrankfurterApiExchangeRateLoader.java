@@ -6,13 +6,13 @@ import software.ulpgc.core.io.readers.ExchangeRateReader;
 import software.ulpgc.core.model.Currency;
 import software.ulpgc.core.model.ExchangeRate;
 
-public class RatesDbApiExchangeRateLoader implements ExchangeRateLoader {
+public class FrankfurterApiExchangeRateLoader implements ExchangeRateLoader {
 
     private final ExchangeRateReader reader;
     private final ExchangeRateDeserializer deserializer;
     private final ExchangeRateAdapter adapter;
 
-    public RatesDbApiExchangeRateLoader(ExchangeRateReader reader, ExchangeRateDeserializer deserializer, ExchangeRateAdapter adapter) {
+    public FrankfurterApiExchangeRateLoader(ExchangeRateReader reader, ExchangeRateDeserializer deserializer, ExchangeRateAdapter adapter) {
         this.reader = reader;
         this.deserializer = deserializer;
         this.adapter = adapter;

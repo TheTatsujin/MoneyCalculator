@@ -1,5 +1,8 @@
-package software.ulpgc.core.io;
+package software.ulpgc.core.io.loaders;
 
+import software.ulpgc.core.io.adapters.CurrencyAdapter;
+import software.ulpgc.core.io.deserializers.CurrencyDeserializer;
+import software.ulpgc.core.io.readers.CurrencyReader;
 import software.ulpgc.core.model.Currency;
 
 import java.util.List;

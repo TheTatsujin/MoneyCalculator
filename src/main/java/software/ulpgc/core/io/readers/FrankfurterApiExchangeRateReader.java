@@ -6,11 +6,11 @@ import software.ulpgc.core.model.Currency;
 
 import java.io.IOException;
 
-public class RatesDbApiExchangeRateReader implements ExchangeRateReader {
-    private static final String url = "https://free.ratesdb.com/v1/rates";
+public class FrankfurterApiExchangeRateReader implements ExchangeRateReader {
+    private static final String url = "https://api.frankfurter.dev/v1/latest";
 
 
-    public RatesDbApiExchangeRateReader() {;
+    public FrankfurterApiExchangeRateReader() {
     }
 
     @Override
@@ -24,7 +24,7 @@ public class RatesDbApiExchangeRateReader implements ExchangeRateReader {
     }
 
     private String getExchangeEndpointURL(Currency from, Currency to) {
-        return url + "?from=" + from.code() + "&to=" + to.code();
+        return url + "?base=" + from.code() + "&symbols=" + to.code();
     }
 
     private String readApi(Currency from, Currency to) throws IOException {
