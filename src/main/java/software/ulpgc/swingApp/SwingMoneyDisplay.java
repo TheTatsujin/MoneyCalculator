@@ -10,4 +10,9 @@ public class SwingMoneyDisplay extends JLabel implements MoneyDisplay {
     public void show(Money money) {
         this.setText(money.toString());
     }
+
+    @Override
+    public void showError(String message) {
+        this.setText(message);
+    }
 }

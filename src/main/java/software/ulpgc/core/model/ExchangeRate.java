@@ -6,6 +6,10 @@ public record ExchangeRate (Currency from, Currency to, double rate) {
         return 31*from.name().hashCode() + to.name().hashCode();
     }
 
+    public static ExchangeRate Null() {
+        return new ExchangeRate(Currency.Null(), Currency.Null(), 0.0);
+    }
+
     public ExchangeRate inverse() {
         return new ExchangeRate(to, from, 1/rate);
     }

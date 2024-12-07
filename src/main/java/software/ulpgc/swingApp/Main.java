@@ -12,11 +12,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        // TODO:
-        //  Catch 'Number too long' Exception
-        //  Catch 'No Internet Connection' Exception
-
-
         CurrencyLoader currencyLoader = getCurrencyLoader();
         List<Currency> currencies = currencyLoader.load();
 
@@ -42,7 +37,6 @@ public class Main {
                 mainFrame.getCurrencyDialog().define(currencies),
                 getExchangeRateLoader(),
                 mainFrame.getMoneyDisplay()
-
         );
     }
 
@@ -63,7 +57,7 @@ public class Main {
         );
     }
     public static CurrencyLoader getCurrencyLoader() {
-        return new ExRateApiCurrencyLoader(
+        return new FrankfurterApiCurrencyLoader(
                 new FrankfurterApiCurrencyReader(),
                 new FrankfurterApiCurrencyDeserializer(),
                 new FrankfurterApiCurrencyAdapter()

@@ -30,25 +30,34 @@ public class ExchangeCommand implements Command {
 
     @Override
     public void execute() {
-        Money result = new Money(
-                calculateExchange(moneyDialog.get(), currencyDialog.get()),
-                currencyDialog.get()
-        );
-
-        moneyDisplay.show(result);
+        if (isCurrencyAvailable())
+            moneyDisplay.showError("Error");
+        else
+            moneyDisplay.show(calculateExchange());
     }
 
-    private long calculateExchange(Money money, Currency to) {
+    private boolean isCurrencyAvailable() {
+        return moneyDialog.get().currency().equals(Currency.Null());
+    }
+
+    private Money calculateExchange(){
+        return new Money(
+                calculateAmount(moneyDialog.get(), currencyDialog.get()),
+                currencyDialog.get()
+        );
+    }
+
+    private long calculateAmount(Money money, Currency to) {
         if (money.currency().equals(to) || money.amount() == 0) return money.amount();
         return (long) (money.amount() * fetchExchangeRate(money, to).rate());
     }
 
     private ExchangeRate fetchExchangeRate(Money money, Currency currency) {
-        ExchangeRate fetched = ratesMemory.computeIfAbsent(getExchangeKey(money.currency(), currency),
+        ExchangeRate fetchedRate = ratesMemory.computeIfAbsent(getExchangeKey(money.currency(), currency),
                 key -> exchangeRateLoader.load(money.currency(), currency));
 
-        ratesMemory.putIfAbsent(getExchangeKey(currency, money.currency()), fetched.inverse());
-        return fetched;
+        ratesMemory.putIfAbsent(getExchangeKey(currency, money.currency()), fetchedRate.inverse());
+        return fetchedRate;
     }
 
     private int getExchangeKey(Currency from, Currency to) {

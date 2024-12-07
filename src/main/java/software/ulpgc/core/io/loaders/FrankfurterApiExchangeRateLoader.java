@@ -20,6 +20,10 @@ public class FrankfurterApiExchangeRateLoader implements ExchangeRateLoader {
 
     @Override
     public ExchangeRate load(Currency from, Currency to) {
-        return adapter.adapt(from, to, deserializer.deserialize(reader.read(from, to)));
+        try {
+            return adapter.adapt(from, to, deserializer.deserialize(reader.read(from, to)));
+        } catch (RuntimeException e) {
+            return ExchangeRate.Null();
+        }
     }
 }

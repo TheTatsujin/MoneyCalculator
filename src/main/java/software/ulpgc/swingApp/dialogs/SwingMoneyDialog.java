@@ -16,6 +16,7 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
     public SwingMoneyDialog() {
         this.setLayout(new FlowLayout());
     }
+
     @Override
     public MoneyDialog define(List<Currency> currencyList) {
         add(newAmountField());
@@ -36,12 +37,17 @@ public class SwingMoneyDialog extends JPanel implements MoneyDialog {
 
     @Override
     public Money get() {
-        if (moneyField.getText().isEmpty()) return Money.Null(currencyDialog.get());
-        return new Money(toLong(moneyField.getText()), currencyDialog.get());
+        return new Money(getAmount(), currencyDialog.get());
     }
 
-    private Long toLong(String text) {
-        return Long.parseLong(text);
+    private Long getAmount() {
+        if (moneyField.getText().isEmpty()) return 0L;
+        try {
+            return Long.parseLong(moneyField.getText());
+        }
+        catch (NumberFormatException e) {
+            return 0L;
+        }
     }
 
     private Component newAmountField() {

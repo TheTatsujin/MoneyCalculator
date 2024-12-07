@@ -4,4 +4,5 @@ import software.ulpgc.core.model.Money;
 
 public interface MoneyDisplay {
     void show(Money money);
+    void showError(String message);
 }
