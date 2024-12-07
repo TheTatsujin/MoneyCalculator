@@ -5,6 +5,7 @@ import software.ulpgc.core.io.deserializers.CurrencyDeserializer;
 import software.ulpgc.core.io.readers.CurrencyReader;
 import software.ulpgc.core.model.Currency;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ExRateApiCurrencyLoader implements CurrencyLoader {
@@ -20,6 +21,11 @@ public class ExRateApiCurrencyLoader implements CurrencyLoader {
 
     @Override
     public List<Currency> load() {
-        return adapter.adapt(deserializer.deserialize(reader.read()));
+        try {
+            return adapter.adapt(deserializer.deserialize(reader.read()));
+        }
+        catch (RuntimeException e) {
+            return List.of(Currency.);
+        }
     }
 }
